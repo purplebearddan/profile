@@ -1,21 +1,21 @@
 /**
- * font imports
- *
- * @format
- */
+* font imports
+*
+* @format
+*/
 
 :root {
     /* base */
     color-scheme: light;
     --bgColor: #fff;
     --onBg: #000;
-
+    
     /* fonts */
-    font-size: 18px;
-    font-family: "Bebas Neue", sans-serif;
-
+    font-size: 16px;
+    font-family: 'Zodiak', serif;
+    
     /* sizing */
-    --scaling: 1.35;
+    --scaling: 1.5;
     --xs: calc(1rem * var(--scaling));
     --sm: calc(var(--xs) * var(--scaling));
     --md: calc(var(--sm) * var(--scaling));
@@ -25,8 +25,8 @@
     /* colors */
 
     /* Surface */
-    --surfaceHue: 360;
-    --surfaceSaturation: 80%;
+    --surfaceHue: 220;
+    --surfaceSaturation: 100%;
     --surfaceLightness: 60%;
     --surfaceOpacity: 0.55;
 
@@ -43,15 +43,15 @@
         var(--surfaceOpacity)
     );
 
-    --onSurfaceColor: hsl(var(--surfaceHue), var(--surfaceSaturation), 20%);
+    --onSurfaceColor: hsl(var(--surfaceHue), var(--surfaceSaturation), 5%);
 
     /* Accent */
     --accentHue: calc(var(--surfaceHue) - 180);
     --accentSaturation: 100%;
     --accentLightness: 60%;
-    --accentOpacity: 0.25;
+    --accentOpacity: 0.55;
 
-    --onAccentColor: hsl(var(--accentHue), var(--accentSaturation), 10%);
+    --onAccentColor: hsl(var(--accentHue), var(--accentSaturation), 5%);
 
     --accentColorOpaque: hsl(
         var(--accentHue),
@@ -74,15 +74,15 @@
         --onBg: #eee;
         /* Surface */
         --surfaceSaturation: 100%;
-        --surfaceLightness: 20%;
-        --surfaceOpacity: 0.25;
+        --surfaceLightness: 10%;
+        --surfaceOpacity: 0.5;
 
         --onSurfaceColor: hsl(var(--surfaceHue), var(--surfaceSaturation), 80%);
 
         /* Accent */
         --accentSaturation: 100%;
-        --accentLightness: 20%;
-        --accentOpacity: 0.25;
+        --accentLightness: 10%;
+        --accentOpacity: 0.5;
         --onAccentColor: hsl(var(--accentHue), var(--accentSaturation), 80%);
     }
 }
@@ -109,26 +109,61 @@ footer {
     display: grid;
 }
 
+header,
+section,
+footer {
+    padding: var(--md);
+}
+
+footer{
+  background-color: var(--accentColor);
+  color: var(--onAccentColor);
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    font-family: "Nunito", sans-serif;
-    /* font-size: 1rem; */
+  font-family: 'Comico', cursive;
+
     margin: 0;
     padding: 0;
     inset: 0;
     top: 0;
     bottom: 0;
-}
+  }
+  
+  h1{
+    font-size: var(--xl);
+    
+  }
+  h2{
+    font-size: var(--lg);
+    
+  }
+  h3{
+    font-size: var(--md);
+    
+  }
+  h4{
+    
+    font-size: var(--sm);
+  }
+  h5{
+    
+    font-size: var(--xs);
+  }
+  h6{
+    
+    font-size: 1rem;
+  }
 
 a,
 a:active,
 a:visited,
 a:hover {
-    inset-inline: var(--xs);
     text-decoration: none;
     color: var(--accentColorOpaque);
 }
@@ -149,19 +184,28 @@ header {
     color: var(--onAccentColor);
 }
 
+header h1 {
+  font-size: 1.5rem;
+}
+
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 nav a {
+  font-size: 1.5rem;
     padding: var(--xs);
     color: var(--onAccentColor) !important;
 }
 nav a:hover {
     padding: var(--xs);
     color: var(--onAccentColor);
-    border-color: var(--onSurfaceColorOpaque);
+    border-color: var(--onAccentColor);
+}
+
+main{
+  padding: 0;
 }
 
 /* Sections */
@@ -179,7 +223,7 @@ section {
         "headline";
     background-color: var(--surfaceColor);
     color: var(--onSurfaceColor);
-    padding: var(--xl);
+    padding: var(--md);
 }
 
 
@@ -213,10 +257,11 @@ section {
 .giantEmoji {
   font-size: 15rem;
   text-align: center;
+  transform-origin: center;
+  rotate: -20deg;
 }
 
 /* Repos */
-
 #repos {
   display: grid;
   grid-template-columns: 1fr;
@@ -246,13 +291,14 @@ section {
 
 #repos #mowglixx {
   grid-area: second;
-  gap: var(--sm);
+  gap: var(--md);
   text-align: center;
+  
 }
 
 #repos #purplebearddan {
   grid-area: third;
-  gap: var(--sm);
+  gap: var(--md);
   text-align: center;
 }
 
@@ -267,6 +313,39 @@ section {
   font-size: 1rem;
 }
 
+footer{
+  grid-template-columns: 1fr;
+}
+
+footer .socialLinks {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--xs);
+  text-align: right;
+}
+footer a:not(:hover) {
+  color: var(--onAccentColor)
+}
+footer a:hover {
+  color: var(--surfaceColorOpaque);
+  border: none;
+}
+
+
+.surface {
+  border-radius: var(--xs);
+  padding: var(--md);
+  color: var(--onSurface);
+  background-color: var(--surfaceColor);
+  box-shadow: 5px 5px 5px hsl(0deg, 0%, 5%, 0.25);
+}
+
+.surface :is(span, a:not(:hover), p, h1, h2, h3, h4, h5, h6) {
+  color: var(--onSurfaceColor);
+}
+
 /* utilities */
 .flexRow {
   display: flex;
@@ -275,12 +354,4 @@ section {
 .flexCol {
   display: column;
   flex-direction: row;
-}
-
-/* repo cards */
-.surface {
-  border-radius: var(--xs);
-  padding: var(--sm);
-  color: var(--onSurface);
-  background-color: var(--surfaceColor);
 }
