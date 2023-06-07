@@ -1,5 +1,14 @@
 /** @format */
 
+const APIAuth = {
+    method: "get",
+    headers: new Headers({
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer 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`,
+    }),
+};
+
 function repoCard(
     { name, full_name, html_url, description, language },
     username,
@@ -63,7 +72,7 @@ class GithubUser {
 
     update() {
         for (let path in this.paths) {
-            fetch(`${this.api}${this.paths[path]}`)
+            fetch(`${this.api}${this.paths[path]}`, APIAuth)
                 .then((data) => data.json())
                 .then((json) => {
                     this.info[path] = json;
@@ -73,7 +82,7 @@ class GithubUser {
     }
 
     addRepos(element) {
-        fetch(`${this.api}${this.paths["repos"]}`)
+        fetch(`${this.api}${this.paths["repos"]}`, APIAuth)
             .then((d) => d.json())
             .then((repos) => {
                 for (let repo of repos) {
